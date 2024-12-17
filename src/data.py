@@ -6,7 +6,10 @@ def load_scTFseq(data_dir='/mlbio_scratch/vinas/scTFseq',
                  file_name = 'C3H10_10X_all_exps_merged_genefiltered_integrated_functional.h5ad',
                  ensemble_mapping_file_name='Mus_musculus.ENS96.csv',
                  split_combinatorial=False,
-                 n_top_genes=2000):
+                 n_top_genes=None,
+                 duplicate_var='remove',
+                 var_index='symbol'
+                ):
     # Load data
     adata = sc.read_h5ad(f'{data_dir}/{file_name}')
     adata.obs['log_dose'] = adata.obs['Dose']
@@ -33,6 +36,18 @@ def load_scTFseq(data_dir='/mlbio_scratch/vinas/scTFseq',
     adata = adata[:, found_ids]
     adata.var = mm10_df.loc[adata.var.index]
     adata.var['Symbol'] = adata.var['gene_name']
+    if var_index == 'symbol':
+        adata.var = adata.var.set_index('Symbol')
+        adata.var['Symbol'] = adata.var.index
+
+    # Ensure var names are unique
+    if duplicate_var == 'remove':
+        vc = adata.var['Symbol'].value_counts() > 1
+        duplicate_symbols = vc[vc].index
+        adata = adata[:, ~adata.var['Symbol'].isin(duplicate_symbols)]
+    else:
+        # Make unique
+        adata.var_names_make_unique()
 
     # Prepare data
     # Categories
