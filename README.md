@@ -1,0 +1,26 @@
+# Gene regulatory network inference
+
+### Installation
+We recommend using Python >= 3.10. The file `requirements.txt` contains the library versions of our environment. To install all the packages, run pip install -r requirements.txt.
+
+---
+
+### Performing gene regulatory inference using scTF-seq data
+
+The notebook `benchmark_LRZINB_CellOracle.ipynb` demonstrates how to use our approach to infer gene regulatory networks using scTF-seq data. In this notebook, we benchmark the following baselines:
+1. Ridge regression
+2. Likelihood ratio of probabilistic zero-inflated negative binomial model
+3. CellOracle (work in progress)
+
+We prune a [base mouse gene regulatory network from CellOracle](https://morris-lab.github.io/CellOracle.documentation/notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data.html?highlight=load_mouse_scatac_atlas_base_grn) using the interactions inferred by the methods above. We evaluate performance using the area under the precision-recall curve (AUPRC), using two ground-truth networks: 
+1. Literature-derived network from the [CollecTRI](https://github.com/saezlab/CollecTRI) database. This resource collects mouse regulatory interactions from 12 publicly available databases.
+2. Pluripotent stem-cell network derived from [ChIP Atlas](https://github.com/inutano/chip-atlas/wiki). The code to process this network is located in `processing/process_chip_atlas_gt_network.ipynb`.
+
+---
+
+### Next steps
+- [ ] **Implement cascade perturbation modelling with instrumental variables.** Using the base network, identify potential instrumental variables. Then run cascade perturbation modelling to 1) improve prediction performance of downstream nodes and 2) infer regulatory interactions for unperturbed transcription factors.
+- [ ] **Constructing a base GRN using ATAC-seq specific to multipotent stromal cells.** We could then follow the CellOracle tutorial (see [here](https://morris-lab.github.io/CellOracle.documentation/tutorials/base_grn.html#option1-preprocessing-scatac-seq-data)) to construct the base GRN. Bonus points if you have ideas on how to improve CellOracle or SCENIC+ in this aspect.
+- [ ] **Running baseline GRN inference methods.** It would be great to compare our current approach to existing methods including CellOracle.
+- [ ] **Alternative evaluation and interpretation of results.** We now evaluate GRN reconstruction performance using a ground-truth network. Can we assess if the models' predictions extrapolate beyond scTF-seq? In other words, can we validate our inferred network using an external dataset? Once cascade perturbation modelling is implemented, assess regulatory inference performance for unperturbed transcription factors.
+- [ ] **Downstream applications.** What are some cool downstream applications that this method can enable?
