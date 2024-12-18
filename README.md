@@ -20,6 +20,7 @@ We prune a [base mouse gene regulatory network from CellOracle](https://morris-l
 
 ### Next steps
 - [ ] **Implement cascade perturbation modelling with instrumental variables.** Using the base network, identify potential instrumental variables. Then run cascade perturbation modelling to 1) improve prediction performance of downstream nodes and 2) infer regulatory interactions for unperturbed transcription factors.
+- [ ] **Condition model on endogenous TF expression. ** The expression of downstream target genes not only depends on TF dose, but also on the endogenous expression of the TF.
 - [ ] **Constructing a base GRN using ATAC-seq specific to multipotent stromal cells.** We could then follow the CellOracle tutorial (see [here](https://morris-lab.github.io/CellOracle.documentation/tutorials/base_grn.html#option1-preprocessing-scatac-seq-data)) to construct the base GRN. Bonus points if you have ideas on how to improve CellOracle or SCENIC+ in this aspect.
 - [ ] **Running baseline GRN inference methods.** It would be great to compare our current approach to existing methods including CellOracle.
 - [ ] **Alternative evaluation and interpretation of results.** We now evaluate GRN reconstruction performance using a ground-truth network. Can we assess if the models' predictions extrapolate beyond scTF-seq? In other words, can we validate our inferred network using an external dataset? Once cascade perturbation modelling is implemented, assess regulatory inference performance for unperturbed transcription factors.
