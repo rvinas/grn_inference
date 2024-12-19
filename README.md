@@ -14,7 +14,7 @@ The notebook `benchmark_LRZINB_CellOracle.ipynb` demonstrates how to use our app
 
 We prune a [base mouse gene regulatory network from CellOracle](https://morris-lab.github.io/CellOracle.documentation/notebooks/04_Network_analysis/Network_analysis_with_Paul_etal_2015_data.html?highlight=load_mouse_scatac_atlas_base_grn) using the interactions inferred by the methods above. We evaluate performance using the area under the precision-recall curve (AUPRC), using two ground-truth networks: 
 1. Literature-derived network from the [CollecTRI](https://github.com/saezlab/CollecTRI) database. This resource collects mouse regulatory interactions from 12 publicly available databases.
-2. Pluripotent stem-cell network derived from [ChIP Atlas](https://github.com/inutano/chip-atlas/wiki). The code to process this network is located in `processing/process_chip_atlas_gt_network.ipynb`.
+2. Ground-truth networks specific to C3H/10T1/2, embryonic fibroblasts, and pluripotent stem-cell network derived from [ChIP Atlas](https://github.com/inutano/chip-atlas/wiki). The code to process this network is located in `processing/process_chip_atlas_network.py`.
 
 ---
 
