@@ -1,7 +1,7 @@
 # Gene regulatory network inference
 
 ### Installation
-We recommend using Python >= 3.10. The file `requirements.txt` contains the library versions of our environment. To install all the packages, run pip install -r requirements.txt.
+We recommend using Python >= 3.10. The file `requirements.txt` contains the library versions of our environment. To install all the packages, run `pip install -r requirements.txt`.
 
 ---
 
@@ -19,9 +19,13 @@ We prune a [base mouse gene regulatory network from CellOracle](https://morris-l
 ---
 
 ### Next steps
-- [ ] **Implement cascade perturbation modelling with instrumental variables.** Using the base network, identify potential instrumental variables. Then run cascade perturbation modelling to 1) improve prediction performance of downstream nodes and 2) infer regulatory interactions for unperturbed transcription factors.
+
+#### Modelling
+- [ ] **Implement cascade perturbation modelling.** Run cascade perturbation modelling to 1) infer regulatory interactions for unperturbed transcription factors and 2) potentially improve prediction performance of downstream nodes.
 - [ ] **Condition model on endogenous TF expression.** The expression of downstream target genes not only depends on TF dose, but also on the endogenous expression of the TF.
 - [ ] **Constructing a base GRN using ATAC-seq specific to multipotent stromal cells.** We could then follow the CellOracle tutorial (see [here](https://morris-lab.github.io/CellOracle.documentation/tutorials/base_grn.html#option1-preprocessing-scatac-seq-data)) to construct the base GRN. Bonus points if you have ideas on how to improve CellOracle or SCENIC+ in this aspect.
-- [ ] **Running baseline GRN inference methods.** It would be great to compare our current approach to existing methods including CellOracle.
-- [ ] **Alternative evaluation and interpretation of results.** We now evaluate GRN reconstruction performance using a ground-truth network. Can we assess if the models' predictions extrapolate beyond scTF-seq? In other words, can we validate our inferred network using an external dataset? Once cascade perturbation modelling is implemented, assess regulatory inference performance for unperturbed transcription factors.
+
+#### Evaluation
+- [x] **Running baseline GRN inference methods.** It would be great to compare our current approach to existing methods including CellOracle.
+- [ ] **Alternative evaluation and interpretation of results.** We now evaluate GRN reconstruction performance using a ground-truth network. Can we assess if the models' predictions extrapolate beyond scTF-seq? In other words, can we validate our inferred network using an external dataset? Once cascade perturbation modelling is implemented, assess regulatory inference performance for unperturbed transcription factors. Incorporate our model to the GRETA ([paper](https://www.biorxiv.org/content/10.1101/2024.12.20.629764v1.full.pdf), [code](https://github.com/saezlab/greta)) benchmark.
 - [ ] **Downstream applications.** What are some cool downstream applications that this method can enable?
